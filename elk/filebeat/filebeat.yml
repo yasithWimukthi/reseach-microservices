@@ -1,0 +1,51 @@
+filebeat.inputs:
+
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/microservices/order-service/*.log
+    fields:
+      service: order-service
+    fields_under_root: false
+    json.keys_under_root: true
+    json.overwrite_keys: true
+    json.add_error_key: true
+
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/microservices/inventory-service/*.log
+    fields:
+      service: inventory-service
+    fields_under_root: false
+    json.keys_under_root: true
+    json.overwrite_keys: true
+    json.add_error_key: true
+
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/microservices/payment-service/*.log
+    fields:
+      service: payment-service
+    fields_under_root: false
+    json.keys_under_root: true
+    json.overwrite_keys: true
+    json.add_error_key: true
+
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/microservices/api-gateway/*.log
+    fields:
+      service: api-gateway
+    fields_under_root: false
+    json.keys_under_root: true
+    json.overwrite_keys: true
+    json.add_error_key: true
+
+output.logstash:
+  hosts: ["logstash:5044"]
+
+logging.level: warning
+logging.to_files: false
